@@ -1,0 +1,176 @@
+<!--
+  Archivo: projects.html
+  Descripción: Estructura HTML5 para la sección de Proyectos con Bento Grid expandido (tarjeta VIDEOCLIPS de 4 columnas), carrusel de 3 videos con slider y visor 3D interactivo listo para avatar.glb con importmap CDN para Three.js, OrbitControls y GLTFLoader.
+  Fecha de última modificación: 2026-08-24
+  Autor: Antigravity
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyectos - Portafolio Persona UI</title>
+  <!-- Importación de Google Fonts: 'Anton', 'Montserrat' y 'Fira Code' -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fira+Code:wght@400;600&family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=6.0">
+
+  <!-- Configurador Import Map CDN para Three.js y Addons -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body class="theme-dark-crimson">
+
+  <!-- Cortinilla de Transición Vertical (Eje Y) -->
+  <div id="page-transition" class="vertical-wipe active"></div>
+
+  <!-- Fallback inmediato para asegurar el retiro de la cortinilla -->
+  <script>
+    requestAnimationFrame(() => {
+      const pt = document.getElementById('page-transition');
+      if (pt) {
+        pt.classList.add('exit');
+        setTimeout(() => { pt.classList.remove('exit', 'active'); }, 150);
+      }
+    });
+  </script>
+
+  <!-- Contenedor global (100vw, 100vh) -->
+  <div class="p3r-global-container">
+
+    <!-- Video de Fondo Animado para Proyectos -->
+    <video class="bg-animated" autoplay loop muted playsinline>
+      <source src="assets/videos/bg_projects.mp4" type="video/mp4">
+    </video>
+
+    <!-- Panel de fondo secundario (#accent-panel) con geometría traslúcida invertida -->
+    <div id="accent-panel"></div>
+
+    <!-- Franja de Acento Afilada Blanca / Rojo Carmesí -->
+    <div class="p3r-left-slash"></div>
+
+    <!-- Sistema de Partículas Flotantes -->
+    <div id="particles-container">
+      <div class="particle p1"></div>
+      <div class="particle p2"></div>
+      <div class="particle p3"></div>
+      <div class="particle p4"></div>
+      <div class="particle p5"></div>
+      <div class="particle p6"></div>
+      <div class="particle p7"></div>
+      <div class="particle p8"></div>
+    </div>
+
+    <!-- Encabezado con Botón de Regreso -->
+    <header class="p3r-header-nav">
+      <a href="index.html" class="p3r-back-btn">
+        <span>&larr;</span> <span>H</span><span>O</span><span>M</span><span>E</span>
+      </a>
+      <h1 class="p3r-page-title">
+        <span>P</span><span>R</span><span>O</span><span>J</span><span>E</span><span>C</span><span>T</span><span>S</span>
+      </h1>
+    </header>
+
+    <!-- Envoltorio del Bento Grid con Scrollbar Oculto -->
+    <main class="bento-wrapper">
+      <div class="bento-container">
+
+        <!-- Caja 1 (2x2): Visor 3D Interactivo con Three.js + GLTFLoader -->
+        <article class="bento-card bento-central" id="interactive-3d-asset">
+          <div class="card-badge">3D VIEWPORT</div>
+          <h2>INTERACTIVE 3D ASSET</h2>
+          <div class="viewport-placeholder" id="threejs-container">
+            <!-- El lienzo WebGL de Three.js se renderizará aquí dinámicamente -->
+          </div>
+          <span class="card-tech">CLIC IZQ: ROTAR // RUEDA: ZOOM // CLIC DER: PANEO</span>
+        </article>
+
+        <!-- Caja 2 (1x2): Pipeline de VFX -->
+        <article class="bento-card bento-vfx">
+          <div class="card-badge">VFX PIPELINE</div>
+          <h2>VFX PRODUCTION</h2>
+          <div class="vfx-content">
+            <p>Composición de alta velocidad, seguimiento de cámara 3D, limpieza de croma y composición multicapa en After Effects y Blender.</p>
+            <ul class="vfx-specs">
+              <li>&bull; 4K Motion Graphics</li>
+              <li>&bull; Color Grading C-Log3</li>
+              <li>&bull; Optical Flow & Motion Tracking</li>
+            </ul>
+          </div>
+          <span class="card-tech">AFTER EFFECTS / BLENDER</span>
+        </article>
+
+        <!-- Caja 3 (2x1): Script de Automatización ExtendScript / JS -->
+        <article class="bento-card bento-script">
+          <div class="card-badge">AUTOMATION SCRIPT</div>
+          <h2>AUTO AUDIO AMPLITUDE SCRIPT</h2>
+          <div class="code-preview">
+            <code>// ExtendScript for After Effects CC
+var comp = app.project.activeItem;
+if (comp && comp instanceof CompItem) {
+    var audioLayer = comp.selectedLayers[0];
+    app.executeCommand(app.findMenuCommandId("Convert Audio to Keyframes"));
+}</code>
+          </div>
+          <span class="card-tech">EXTENDSCRIPT / JAVASCRIPT</span>
+        </article>
+
+
+        <!-- Tarjeta de Ancho Completo (grid-column: 1 / -1): Carrusel de Videoclips -->
+        <article class="bento-card bento-videoclips">
+          <div class="card-badge">SHOWCASE</div>
+          <h2>VIDEOCLIPS</h2>
+          
+          <div class="carousel-container">
+            <button class="carousel-btn btn-prev" id="carousel-prev" aria-label="Anterior">&larr;</button>
+            <div class="carousel-viewport">
+              <div class="carousel-track" id="carousel-track">
+
+                <!-- AQUI EMPIEZA UN VIDEO -->
+                <div class="carousel-slide">
+                  <iframe width="100%" height="100%" style="aspect-ratio: 16/9; border: none;" src="https://www.youtube.com/embed/rM8InTJ0380?vq=hd1080&rel=0&enablejsapi=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <!-- AQUI TERMINA UN VIDEO -->
+
+                <!-- AQUI EMPIEZA UN VIDEO -->
+                <div class="carousel-slide">
+                  <iframe width="100%" height="100%" style="aspect-ratio: 16/9; border: none;" src="https://www.youtube.com/embed/yJtWjimyclI?vq=hd1080&rel=0&enablejsapi=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <!-- AQUI TERMINA UN VIDEO -->
+
+                <!-- AQUI EMPIEZA UN VIDEO -->
+                <div class="carousel-slide">
+                  <iframe width="100%" height="100%" style="aspect-ratio: 16/9; border: none;" src="https://www.youtube.com/embed/kfK_-gqXg7o?vq=hd1080&rel=0&enablejsapi=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <!-- AQUI TERMINA UN VIDEO -->
+
+                <!-- AQUI EMPIEZA UN VIDEO -->
+                <div class="carousel-slide">
+                  <iframe width="100%" height="100%" style="aspect-ratio: 16/9; border: none;" src="https://www.youtube.com/embed/ZS53pixZdUE?vq=hd1080&rel=0&enablejsapi=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <!-- AQUI TERMINA UN VIDEO -->
+
+              </div>
+            </div>
+            <button class="carousel-btn btn-next" id="carousel-next" aria-label="Siguiente">&rarr;</button>
+          </div>
+
+          <span class="card-tech">VIDEO CAROUSEL / 16:9 SLIDER</span>
+        </article>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Script Principal de Módulo ES -->
+  <script type="module" src="script.js?v=13.0"></script>
+</body>
+</html>

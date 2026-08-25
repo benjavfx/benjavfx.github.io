@@ -1,0 +1,130 @@
+<!--
+  Archivo: skills.html
+  Descripción: Estructura HTML5 para Habilidades sin franja diagonal sobre la cara del personaje, video bg_skills.mp4, tema Cian Neón y tarjetas compactas.
+  Fecha de última modificación: 2026-08-24
+  Autor: Antigravity
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habilidades - Portafolio Persona UI</title>
+  <!-- Importación de Google Fonts: 'Anton' y 'Montserrat' -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=6.0">
+</head>
+<body class="theme-cyan-skills">
+
+  <!-- Cortinilla de Transición Horizontal -->
+  <div id="page-transition" class="active"></div>
+
+  <!-- Fallback inmediato para asegurar el retiro de la cortinilla en cualquier entorno -->
+  <script>
+    requestAnimationFrame(() => {
+      const pt = document.getElementById('page-transition');
+      if (pt) {
+        pt.classList.add('exit');
+        setTimeout(() => { pt.classList.remove('exit', 'active'); }, 150);
+      }
+    });
+  </script>
+
+  <!-- Contenedor global (100vw, 100vh) -->
+  <div class="p3r-global-container">
+
+    <!-- Video de Fondo Animado para Habilidades -->
+    <video class="bg-animated" autoplay loop muted playsinline>
+      <source src="assets/videos/bg_skills.mp4" type="video/mp4">
+    </video>
+
+    <!-- Panel de fondo secundario (#accent-panel) invertido hacia la derecha -->
+    <div id="accent-panel"></div>
+
+    <!-- Sistema de Partículas Flotantes -->
+    <div id="particles-container">
+      <div class="particle p1"></div>
+      <div class="particle p2"></div>
+      <div class="particle p3"></div>
+      <div class="particle p4"></div>
+      <div class="particle p5"></div>
+      <div class="particle p6"></div>
+      <div class="particle p7"></div>
+      <div class="particle p8"></div>
+    </div>
+
+    <!-- Encabezado con Botón de Regreso -->
+    <header class="p3r-header-nav">
+      <a href="index.html" class="p3r-back-btn btn-cyan">
+        <span>&larr;</span> <span>H</span><span>O</span><span>M</span><span>E</span>
+      </a>
+      <h1 class="p3r-page-title title-cyan">
+        <span>S</span><span>K</span><span>I</span><span>L</span><span>L</span><span>S</span>
+      </h1>
+    </header>
+
+    <!-- Envoltorio de Habilidades (Skill Stats Persona UI) -->
+    <main class="skills-wrapper">
+      <div class="skills-container">
+
+        <!-- Header de Sección -->
+        <div class="skills-header">
+          <span class="cat-num">STATISTICS</span>
+          <h2>SKILL STATS // PERFORMANCE</h2>
+        </div>
+
+        <!-- Skill 1: Adobe After Effects -->
+        <div class="skill-item">
+          <div class="skill-info">
+            <span class="skill-title">ADOBE AFTER EFFECTS</span>
+            <span class="skill-value">90%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-fill" style="--fill-percent: 90%; width: 90%;"></div>
+          </div>
+        </div>
+
+        <!-- Skill 2: Blender -->
+        <div class="skill-item">
+          <div class="skill-info">
+            <span class="skill-title">BLENDER</span>
+            <span class="skill-value">85%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-fill" style="--fill-percent: 85%; width: 85%;"></div>
+          </div>
+        </div>
+
+        <!-- Skill 3: Adobe Premiere Pro -->
+        <div class="skill-item">
+          <div class="skill-info">
+            <span class="skill-title">ADOBE PREMIERE PRO</span>
+            <span class="skill-value">85%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-fill" style="--fill-percent: 85%; width: 85%;"></div>
+          </div>
+        </div>
+
+        <!-- Skill 4: Adobe Photoshop -->
+        <div class="skill-item">
+          <div class="skill-info">
+            <span class="skill-title">ADOBE PHOTOSHOP</span>
+            <span class="skill-value">80%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-fill" style="--fill-percent: 80%; width: 80%;"></div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Script JavaScript Principal -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>

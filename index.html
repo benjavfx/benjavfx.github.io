@@ -1,0 +1,93 @@
+<!--
+  Archivo: index.html
+  Descripción: Estructura HTML5 para el fondo, video animado bg_home.mp4, partículas flotantes, perfil, menú caótico, personaje y cortinilla estilo Persona 3 Reload.
+  Fecha de última modificación: 2026-08-24
+  Autor: Antigravity
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portafolio - Persona 3 Reload UI</title>
+  <!-- Importación de Google Fonts: 'Anton' y 'Montserrat' -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=6.0">
+</head>
+<body>
+
+  <!-- Cortinilla de Transición de Página (Page Wipe Persona 3 Reload Style) -->
+  <div id="page-transition" class="active"></div>
+
+  <!-- Fallback inmediato para asegurar el retiro de la cortinilla en cualquier entorno -->
+  <script>
+    requestAnimationFrame(() => {
+      const pt = document.getElementById('page-transition');
+      if (pt) {
+        pt.classList.add('exit');
+        setTimeout(() => { pt.classList.remove('exit', 'active'); }, 150);
+      }
+    });
+  </script>
+
+  <!-- Contenedor global absoluto (100vw, 100vh, overflow: hidden) -->
+  <div class="p3r-global-container">
+
+    <!-- Video de Fondo Animado para Inicio -->
+    <video class="bg-animated" autoplay loop muted playsinline>
+      <source src="assets/videos/bg_home.mp4" type="video/mp4">
+    </video>
+
+    <!-- Sistema de Partículas Flotantes (Efecto Antigravedad / Acuático) -->
+    <div id="particles-container">
+      <div class="particle p1"></div>
+      <div class="particle p2"></div>
+      <div class="particle p3"></div>
+      <div class="particle p4"></div>
+      <div class="particle p5"></div>
+      <div class="particle p6"></div>
+      <div class="particle p7"></div>
+      <div class="particle p8"></div>
+    </div>
+
+    <!-- Capa de acento azul oscuro intermedio para profundidad estética P3R -->
+    <div class="p3r-accent-layer"></div>
+
+    <!-- Panel secundario superpuesto (mitad derecha) con corte diagonal en clip-path -->
+    <div class="p3r-right-panel"></div>
+
+    <!-- Franja de acento afilada blanca secundaria para reforzar el estilo Persona 3 Reload -->
+    <div class="p3r-slash-accent"></div>
+
+    <!-- Bloque de Perfil (Arriba a la Izquierda) -->
+    <div class="p3r-profile-block">
+      <h1 class="p3r-profile-name">BENJA</h1>
+      <p class="p3r-profile-bio">editor/VFX & 3D Artist </p>
+    </div>
+
+    <!-- Menú de navegación posicionado en la mitad inferior izquierda (z-index alto: 50) -->
+    <nav class="p3r-nav-menu">
+      <a href="projects.html" class="p3r-menu-item">
+        <span>P</span><span>R</span><span>O</span><span>J</span><span>E</span><span>C</span><span>T</span><span>S</span>
+      </a>
+      <a href="skills.html" class="p3r-menu-item">
+        <span>S</span><span>K</span><span>I</span><span>L</span><span>L</span><span>S</span>
+      </a>
+      <a href="about.html" class="p3r-menu-item">
+        <span>A</span><span>B</span><span>O</span><span>U</span><span>T</span>
+      </a>
+    </nav>
+
+    <!-- Contenedor de Personaje (Esquina inferior derecha, z-index: 10) -->
+    <div id="character-art">
+      <!-- Espacio reservado para inyectar una imagen PNG con transparencia -->
+    </div>
+
+  </div>
+
+  <!-- Script JavaScript principal -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>
