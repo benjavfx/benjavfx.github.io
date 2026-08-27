@@ -14,11 +14,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=7.0">
+  <link rel="stylesheet" href="styles.css?v=8.0">
 </head>
 <body class="theme-yellow-about">
 
-  <!-- Cortinilla de Transición de Persiana (scaleX desde el centro) -->
+  <!-- Cortinilla de Transición Horizontal -->
   <div id="page-transition" class="scale-wipe active"></div>
 
   <!-- Fallback inmediato para asegurar el retiro de la cortinilla en cualquier entorno -->
@@ -40,13 +40,10 @@
       <source src="assets/videos/bg_about.mp4" type="video/mp4">
     </video>
 
-    <!-- Bloque poligonal masivo en el centro de la pantalla (#accent-panel) -->
+    <!-- Panel de fondo secundario (#accent-panel) amarillo -->
     <div id="accent-panel"></div>
 
-    <!-- Franja de acento oblicua secundaria -->
-    <div class="p3r-yellow-slash"></div>
-
-    <!-- Sistema de Partículas Flotantes en Amarillo/Blanco -->
+    <!-- Sistema de Partículas Flotantes -->
     <div id="particles-container">
       <div class="particle p1"></div>
       <div class="particle p2"></div>
@@ -68,45 +65,38 @@
       </h1>
     </header>
 
-    <!-- Lado Izquierdo: Bloque de Texto Dinámico & Perfil -->
+    <!-- Envoltorio de Contenido Sobre Mí (Fila superior limpia sin recadros) -->
     <main class="about-content-left">
 
-      <!-- Nombre Principal Dinámico -->
-      <div class="profile-header-box">
+      <!-- Fila Superior Limpia: Título del Perfil + Tag (Benja) -->
+      <div class="about-top-header">
         <h1 class="profile-fullname">
           <span>P</span><span>I</span><span>E</span><span>R</span><span>O</span>
           <br>
           <span class="highlight-yellow"><span>B</span><span>E</span><span>N</span><span>J</span><span>A</span><span>M</span><span>I</span><span>N</span></span>
           <span class="nickname-tag">(BENJA)</span>
         </h1>
-
-        <!-- Títulos Destacados -->
-        <div class="profile-roles-container">
-          <span class="role-badge">VFX EDITOR</span>
-          <span class="role-badge">3D ARTIST</span>
-          <span class="role-badge">UNIVERSITY STUDENT</span>
-        </div>
       </div>
 
-      <!-- Biografía Breve -->
-      <div class="profile-bio-box">
-        <p>
-          CREADOR VISUAL EN CONSTANTE EXPERIMENTACIÓN.
-Trabajo con VFX, edición audiovisual y 3D para crear piezas que mezclan técnica, estética y narrativa. Mi objetivo es convertir ideas en imágenes que tengan identidad y que, sobre todo, se sientan propias.
-        </p>
-      </div>
-
-      <!-- Sección de Redes Sociales y Contacto: CONTACT & SOCIALS // NETWORK -->
-      <section class="gear-inventory-box">
-        <div class="inventory-header">
-          <span class="inv-icon">&#9881;</span>
-          <h2>CONTACT & SOCIALS // NETWORK</h2>
+      <!-- Tarjeta 1: BIOGRAFÍA / BIO -->
+      <article class="about-card bio-card">
+        <div class="card-badge-yellow">BIOGRAPHY</div>
+        <h2>ABOUT ME // VIBE</h2>
+        <div class="bio-text">
+          <p>Editor de video, artista 3D y desarrollador creativo especializado en la creación de interfaces tácticas y motion graphics de alto impacto.</p>
+          <p>Me apasiona combinar estética de videojuegos contemporáneos, dirección de arte estilizada y animación fluida para contar historias visuales memorables.</p>
         </div>
+      </article>
 
+      <!-- Tarjeta 2: Redes Sociales y Contacto (NETWORK) -->
+      <article class="about-card social-card">
+        <div class="card-badge-yellow">NETWORK</div>
+        <h2>CONTACT & SOCIALS // NETWORK</h2>
+        
         <div class="social-grid">
-          <!-- Item 1: Instagram -->
-          <a href="https://www.instagram.com/benj_7_/?hl=es" target="_blank" rel="noopener noreferrer" class="social-btn inventory-item">
-            <div class="item-slot-icon">IG</div>
+          <!-- Botón Instagram -->
+          <a href="https://instagram.com/benj_7_" target="_blank" class="social-btn inventory-item">
+            <span class="item-slot-icon">IG</span>
             <div class="item-details">
               <span class="item-name">INSTAGRAM</span>
               <span class="item-spec">@benj_7_</span>
@@ -114,27 +104,27 @@ Trabajo con VFX, edición audiovisual y 3D para crear piezas que mezclan técnic
             <span class="item-status">VISIT</span>
           </a>
 
-          <!-- Item 2: TikTok -->
-          <a href="https://www.tiktok.com/@perrowaton.edits?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="social-btn inventory-item">
-            <div class="item-slot-icon">TIKTOK</div>
+          <!-- Botón TikTok -->
+          <a href="https://tiktok.com/@benj_7_" target="_blank" class="social-btn inventory-item">
+            <span class="item-slot-icon">TIKTOK</span>
             <div class="item-details">
               <span class="item-name">TIKTOK</span>
             </div>
             <span class="item-status">WATCH</span>
           </a>
 
-          <!-- Item 3: WhatsApp -->
-          <a href="https://wa.me/51964593718" target="_blank" rel="noopener noreferrer" class="social-btn inventory-item">
-            <div class="item-slot-icon">WSP</div>
+          <!-- Botón WhatsApp -->
+          <a href="https://wa.me/51955034604" target="_blank" class="social-btn inventory-item">
+            <span class="item-slot-icon">WSP</span>
             <div class="item-details">
               <span class="item-name">WHATSAPP</span>
             </div>
             <span class="item-status">CHAT</span>
           </a>
 
-          <!-- Item 4: Gmail -->
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=pierobenjaminzegarra@gmail.com" target="_blank" rel="noopener noreferrer" class="social-btn inventory-item">
-            <div class="item-slot-icon">MAIL</div>
+          <!-- Botón Gmail Direct Compose -->
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=pierobenjaminzegarra@gmail.com" target="_blank" class="social-btn inventory-item">
+            <span class="item-slot-icon">MAIL</span>
             <div class="item-details">
               <span class="item-name">GMAIL</span>
               <span class="item-spec">pierobenjaminzegarra@gmail.com</span>
@@ -142,11 +132,11 @@ Trabajo con VFX, edición audiovisual y 3D para crear piezas que mezclan técnic
             <span class="item-status">SEND</span>
           </a>
         </div>
-      </section>
+      </article>
 
     </main>
 
-    <!-- Lado Derecho: Contenedor del Avatar (Preparado para render PNG transparente) -->
+    <!-- Contenedor del Avatar 2D/3D (Lado Derecho) -->
     <div id="avatar-container">
       <!-- Espacio reservado listo para recibir el render PNG del personaje -->
     </div>
@@ -154,6 +144,6 @@ Trabajo con VFX, edición audiovisual y 3D para crear piezas que mezclan técnic
   </div>
 
   <!-- Script JavaScript Principal -->
-  <script type="module" src="script.js?v=7.0"></script>
+  <script type="module" src="script.js?v=8.0"></script>
 </body>
 </html>
