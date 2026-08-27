@@ -89,10 +89,10 @@
           <div class="card-badge">3D VIEWPORT</div>
           <h2>INTERACTIVE 3D ASSET</h2>
           <div class="viewport-placeholder" id="threejs-container">
-            <model-viewer src="assets/models/avatar.glb" loading="lazy" camera-controls auto-rotate camera-orbit="45deg 70deg 2.5m" field-of-view="30deg" shadow-intensity="0" exposure="1" style="width: 100%; height: 100%; background-color: transparent;"></model-viewer>
+            <model-viewer src="assets/models/avatar.glb" loading="lazy" camera-controls auto-rotate camera-orbit="45deg 70deg 2.5m" field-of-view="20deg" shadow-intensity="0" exposure="1" style="width: 100%; height: 100%; background-color: transparent;"></model-viewer>
           </div>
           <span class="card-tech">CLIC IZQ: ROTAR // RUEDA: ZOOM // CLIC DER: PANEO</span>
-        </article>
+        </article>  
 
         <!-- Caja 2 (1x2): Pipeline de VFX -->
         <article class="bento-card bento-vfx">
@@ -116,7 +116,7 @@
           <div class="code-preview">
             <code>// ExtendScript for After Effects CC
 var comp = app.project.activeItem;
-if (comp && comp instanceof CompItem) {
+if (comp && comp instanceof CompItem) {model-viewer
     var audioLayer = comp.selectedLayers[0];
     app.executeCommand(app.findMenuCommandId("Convert Audio to Keyframes"));
 }</code>
