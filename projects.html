@@ -25,6 +25,8 @@
       }
     }
   </script>
+  <!-- Visor PBR 3D Google Model-Viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
 <body class="theme-dark-crimson">
 
@@ -82,12 +84,22 @@
     <main class="bento-wrapper">
       <div class="bento-container">
 
-        <!-- Caja 1 (2x2): Visor 3D Interactivo con Three.js + GLTFLoader -->
+        <!-- Caja 1 (2x2): Visor 3D Interactivo con <model-viewer> PBR -->
         <article class="bento-card bento-central" id="interactive-3d-asset">
           <div class="card-badge">3D VIEWPORT</div>
           <h2>INTERACTIVE 3D ASSET</h2>
           <div class="viewport-placeholder" id="threejs-container">
-            <!-- El lienzo WebGL de Three.js se renderizará aquí dinámicamente -->
+            <model-viewer 
+              src="assets/models/avatar.glb" 
+              alt="Interactive 3D Desk Asset" 
+              camera-controls 
+              interaction-prompt="auto"
+              shadow-intensity="1"
+              environment-image="neutral"
+              exposure="1.2"
+              poster="none"
+              style="width: 100%; height: 100%; min-height: 250px; background-color: transparent;">
+            </model-viewer>
           </div>
           <span class="card-tech">CLIC IZQ: ROTAR // RUEDA: ZOOM // CLIC DER: PANEO</span>
         </article>

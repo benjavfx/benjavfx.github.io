@@ -116,9 +116,9 @@ const initApp = () => {
     });
   }
 
-  // 4. Motor 3D Three.js + GLTFLoader + OrbitControls en #interactive-3d-asset / #threejs-container
-  const container = document.getElementById('threejs-container') || document.getElementById('interactive-3d-asset');
-  if (container) {
+  // 4. Motor 3D PBR en #interactive-3d-asset / #threejs-container
+  const container = document.getElementById('threejs-container');
+  if (container && !container.querySelector('model-viewer')) {
     const scene = new THREE.Scene();
 
     // Fondo transparente para integrar el canvas con la tarjeta Bento Grid
@@ -197,25 +197,6 @@ const initApp = () => {
       undefined,
       (error) => {
         console.error('Error al cargar avatar.glb por temas de rutas o archivo ausente:', error);
-        
-        // Respaldo de malla wireframe estilizada P3R
-        const geometry = new THREE.BoxGeometry(1, 1, 1);
-        const material = new THREE.MeshStandardMaterial({
-          color: 0xd90429,
-          wireframe: true,
-          emissive: 0x03045e
-        });
-        const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
-
-        const animateFallback = () => {
-          requestAnimationFrame(animateFallback);
-          cube.rotation.x += 0.008;
-          cube.rotation.y += 0.008;
-          controls.update();
-          renderer.render(scene, camera);
-        };
-        animateFallback();
       }
     );
 
