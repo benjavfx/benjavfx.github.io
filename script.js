@@ -10,25 +10,43 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const initApp = () => {
-  // 1. Asegurar reproducción automática de videos de fondo animado (.bg-animated)
+  // 1. Asegurar reproducción automática y sin parpadeos de videos de fondo (.bg-animated)
   const bgVideos = document.querySelectorAll('.bg-animated');
   bgVideos.forEach(video => {
     video.muted = true;
-    video.play().catch(err => {
-      console.log('Autoplay video activado tras primera interacción:', err);
-    });
+    video.playsInline = true;
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(err => {
+        console.log('Autoplay video activado tras primera interacción:', err);
+        document.addEventListener('click', () => video.play(), { once: true });
+      });
+    }
   });
 
-  // 2. Lógica de Cortinilla de Transición de Página (#page-transition)
+  // 2. Lógica de Cortinilla de Transición de Página (#page-transition) sin parpadeo de 1 fotograma
   const pageTransition = document.getElementById('page-transition');
   if (pageTransition) {
-    requestAnimationFrame(() => {
-      pageTransition.classList.add('exit');
-    });
+    let curtainDismissed = false;
+    const hideCurtain = () => {
+      if (curtainDismissed) return;
+      curtainDismissed = true;
+      requestAnimationFrame(() => {
+        pageTransition.classList.add('exit');
+        setTimeout(() => {
+          pageTransition.classList.remove('exit', 'active');
+        }, 150);
+      });
+    };
 
-    setTimeout(() => {
-      pageTransition.classList.remove('exit', 'active');
-    }, 150);
+    const activeVideo = bgVideos[0];
+    if (activeVideo && activeVideo.readyState < 2) {
+      activeVideo.addEventListener('loadeddata', hideCurtain, { once: true });
+      activeVideo.addEventListener('playing', hideCurtain, { once: true });
+      setTimeout(hideCurtain, 180); // Límite máximo de espera para mantener la fluidez táctica
+    } else {
+      hideCurtain();
+    }
   }
 
   // Interceptación de enlaces <a> para reproducir la cortinilla estilo Persona 3

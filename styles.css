@@ -86,7 +86,7 @@ body.theme-yellow-about .p3r-global-container {
   Video de Fondo Animado (.bg-animated)
 */
 .bg-animated {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -94,8 +94,11 @@ body.theme-yellow-about .p3r-global-container {
   object-fit: cover;
   z-index: 2;
   pointer-events: none;
+  background-color: #000000;
   opacity: 1;
   filter: contrast(105%) brightness(100%);
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 /* 
@@ -1319,14 +1322,63 @@ body.theme-cyan-skills #page-transition::before { background-color: #00f5d4; }
 }
 
 /* ==========================================================================
-   Compatibilidad Responsiva Móvil (@media (max-width: 768px))
+   Compatibilidad y Optimización Responsiva Móvil (@media (max-width: 768px))
    ========================================================================== */
 @media (max-width: 768px) {
+  /* Habilitar desplazamiento vertical limpio en celulares */
+  html, body, .p3r-global-container {
+    overflow-y: auto !important;
+    height: auto !important;
+    min-height: 100vh !important;
+  }
+
+  /* Encabezado Navegación Compacto Móvil */
+  .p3r-header-nav {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 100 !important;
+    background: rgba(5, 5, 5, 0.9) !important;
+    backdrop-filter: blur(10px) !important;
+    padding: 10px 15px !important;
+    border-bottom: 2px solid var(--accent-red) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  .p3r-page-title {
+    font-size: 1.3rem !important;
+  }
+
+  .p3r-back-btn {
+    font-size: 0.75rem !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+
+  /* Reordenado y flujo relativo para contenedores principales */
+  .skills-wrapper,
+  .bento-wrapper,
+  .about-content-left {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: auto !important;
+    margin: 75px auto 30px auto !important;
+    width: 92vw !important;
+    max-width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
   /* Bento Grid a Columna Unificada */
   .bento-container {
     display: flex !important;
     flex-direction: column !important;
-    gap: 20px !important;
+    gap: 15px !important;
+    width: 100% !important;
   }
 
   /* Resetear Posiciones de las Tarjetas Bento Grid */
@@ -1336,36 +1388,100 @@ body.theme-cyan-skills #page-transition::before { background-color: #00f5d4; }
     grid-column: auto !important;
     grid-row: auto !important;
     width: 100% !important;
+    min-height: auto !important;
+    padding: 1rem !important;
+  }
+
+  .bento-card.bento-central {
+    min-height: 260px !important;
+  }
+
+  #threejs-container {
+    min-height: 180px !important;
+    height: 200px !important;
   }
 
   /* Ajustes del Carrusel de Videoclips */
   .carousel-slide {
-    padding: 10px 40px !important;
+    padding: 5px 30px !important;
   }
 
   .carousel-slide iframe {
     width: 100% !important;
+    height: 190px !important;
+    aspect-ratio: 16/9 !important;
+  }
+
+  .carousel-btn {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Menú Inicio (index.html) */
+  .p3r-menu-container {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    margin: 110px auto 40px auto !important;
+    width: 90vw !important;
+  }
+
+  .p3r-menu-item {
+    font-size: 1.4rem !important;
+    gap: 0.25rem !important;
+  }
+
+  .p3r-menu-item span {
+    padding: 0.2rem 0.4rem !important;
+    font-size: 1.3rem !important;
   }
 
   /* Botones Sociales (Network / Contact Persona UI) */
+  .social-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
   .social-btn {
-    padding: 15px !important;
+    padding: 12px 15px !important;
     font-size: 0.85rem !important;
+    width: 100% !important;
   }
 
   .social-btn i,
   .social-btn .item-slot-icon {
-    font-size: 1.2rem !important;
+    font-size: 1rem !important;
+    min-width: 45px !important;
   }
 
   /* Contenedor de Skills */
-  .skills-wrapper {
-    width: 90vw !important;
-    left: 5vw !important;
-  }
-
   .skills-container {
     width: 100% !important;
-    padding: 10px !important;
+    padding: 1.2rem !important;
+    gap: 1rem !important;
+  }
+
+  .skill-title,
+  .skill-value {
+    font-size: 0.9rem !important;
+  }
+
+  .skill-track {
+    height: 20px !important;
+  }
+
+  /* Ocultar superposiciones de arte en pantallas pequeñas para evitar bloqueos */
+  #character-art,
+  #avatar-container {
+    display: none !important;
+  }
+
+  #accent-panel {
+    opacity: 0.25 !important;
+    width: 100vw !important;
+    pointer-events: none !important;
   }
 }
