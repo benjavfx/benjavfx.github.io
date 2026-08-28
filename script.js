@@ -25,7 +25,7 @@ const initApp = () => {
     }
   });
 
-  // 2. Lógica de Cortinilla de Transición de Página (#page-transition) sin parpadeo de 1 fotograma
+  // 2. Lógica de Cortinilla de Transición de Página (#page-transition) Ultrarrápida y Táctica
   const pageTransition = document.getElementById('page-transition');
   if (pageTransition) {
     let curtainDismissed = false;
@@ -36,26 +36,41 @@ const initApp = () => {
         pageTransition.classList.add('exit');
         setTimeout(() => {
           pageTransition.classList.remove('exit', 'active');
-        }, 150);
+        }, 80);
       });
     };
 
-    const activeVideo = bgVideos[0];
-    if (activeVideo && activeVideo.readyState < 2) {
-      activeVideo.addEventListener('loadeddata', hideCurtain, { once: true });
-      activeVideo.addEventListener('playing', hideCurtain, { once: true });
-      setTimeout(hideCurtain, 180); // Límite máximo de espera para mantener la fluidez táctica
-    } else {
-      hideCurtain();
-    }
+    // Desvanecer cortinilla de forma inmediata y táctica
+    requestAnimationFrame(() => {
+      setTimeout(hideCurtain, 30);
+    });
   }
 
-  // Interceptación de enlaces <a> para reproducir la cortinilla estilo Persona 3
+  // Interceptación de enlaces <a> con precarga instantánea (Prefetch on Hover/Touch)
   const links = document.querySelectorAll('a[href]');
+  const prefetchedUrls = new Set();
+
   links.forEach(link => {
+    // Precarga en memoria al pasar el mouse o tocar en móviles (reduce latencia a 0ms)
+    const prefetchTarget = () => {
+      const href = link.getAttribute('href');
+      if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto:') && !href.startsWith('javascript:')) {
+        if (!prefetchedUrls.has(href)) {
+          prefetchedUrls.add(href);
+          const linkElem = document.createElement('link');
+          linkElem.rel = 'prefetch';
+          linkElem.href = href;
+          document.head.appendChild(linkElem);
+        }
+      }
+    };
+
+    link.addEventListener('pointerenter', prefetchTarget, { passive: true });
+    link.addEventListener('touchstart', prefetchTarget, { passive: true });
+
     link.addEventListener('click', (e) => {
       const targetUrl = link.getAttribute('href');
-      if (!targetUrl || targetUrl.startsWith('#') || targetUrl.startsWith('javascript:')) {
+      if (!targetUrl || targetUrl.startsWith('#') || targetUrl.startsWith('http') || targetUrl.startsWith('mailto:') || targetUrl.startsWith('javascript:')) {
         return;
       }
       e.preventDefault();
@@ -64,9 +79,10 @@ const initApp = () => {
         pageTransition.classList.remove('exit');
         pageTransition.classList.add('active');
 
+        // Transición de 70ms súper fluida y reactiva
         setTimeout(() => {
           window.location.href = targetUrl;
-        }, 220);
+        }, 70);
       } else {
         window.location.href = targetUrl;
       }

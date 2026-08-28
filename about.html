@@ -14,7 +14,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=8.0">
+  <link rel="stylesheet" href="styles.css?v=9.0">
+
+  <!-- Reglas de Precarga Especulativa Nativa (0ms latencia) -->
+  <script type="speculationrules">
+    {
+      "prefetch": [
+        {
+          "source": "list",
+          "urls": ["index.html", "projects.html", "skills.html", "about.html"]
+        }
+      ]
+    }
+  </script>
 </head>
 <body class="theme-yellow-about">
 
@@ -27,7 +39,7 @@
       const pt = document.getElementById('page-transition');
       if (pt) {
         pt.classList.add('exit');
-        setTimeout(() => { pt.classList.remove('exit', 'active'); }, 150);
+        setTimeout(() => { pt.classList.remove('exit', 'active'); }, 80);
       }
     });
   </script>
@@ -36,7 +48,7 @@
   <div class="p3r-global-container">
 
     <!-- Video de Fondo Animado para Sobre Mí -->
-    <video class="bg-animated" autoplay loop muted playsinline>
+    <video class="bg-animated" autoplay loop muted playsinline preload="auto">
       <source src="assets/videos/bg_about.mp4" type="video/mp4">
     </video>
 
@@ -144,6 +156,6 @@
   </div>
 
   <!-- Script JavaScript Principal -->
-  <script type="module" src="script.js?v=8.0"></script>
+  <script type="module" src="script.js?v=9.0"></script>
 </body>
 </html>
